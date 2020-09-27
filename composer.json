@@ -1,0 +1,45 @@
+{
+    "name": "gentor/omnipay-dskbank",
+    "type": "library",
+    "description": "dskbank.bg gateway for Omnipay payment processing library",
+    "keywords": [
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment",
+        "dskbank",
+        "purchase"
+    ],
+    "homepage": "https://github.com/gentor/omnipay-dskbank",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeni Nurkov",
+            "email": "evgeni.nurkov@gmail.com"
+        },
+        {
+            "name": "Alexander Avakov",
+            "email": "yaavakov@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\DskBank\\": "src/"
+        }
+    },
+    "require": {
+        "omnipay/common": "^3",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "omnipay/tests": "^3",
+        "larapack/dd": "^1.1"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "prefer-stable": true
+}

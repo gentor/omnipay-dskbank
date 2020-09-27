@@ -1,0 +1,67 @@
+<?php
+
+namespace Omnipay\DskBank\Message;
+
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Exception\RuntimeException;
+
+class CardBindRequest extends AbstractCurlRequest
+{
+    /**
+     * Get binding id
+     *
+     * @return string
+     */
+    public function getBindingId(): ?string
+    {
+        return $this->getParameter('bindingId');
+    }
+
+    /**
+     * Set binding id
+     *
+     * @param string $bindingId
+     * @return $this
+     * @throws RuntimeException
+     */
+    public function setBindingId(string $bindingId): self
+    {
+        return $this->setParameter('bindingId', $bindingId);
+    }
+
+    /**
+     * Method name from bank API
+     *
+     * @return string
+     */
+    protected function getMethod(): string
+    {
+        return 'rest/bindCard.do';
+    }
+
+    /**
+     * Response class name. Method will be ignored if class name passed to constructor third parameter
+     *
+     * @return string
+     */
+    public function getResponseClass(): string
+    {
+        return 'CardBindResponse';
+    }
+
+    /**
+     * Get the raw data array for this message. The format of this varies from gateway to
+     * gateway, but will usually be either an associative array, or a SimpleXMLElement.
+     *
+     * @return array
+     * @throws InvalidRequestException
+     */
+    public function getData(): array
+    {
+        $this->validate('bindingId');
+
+        return [
+            'bindingId' => $this->getBindingId(),
+        ];
+    }
+}
