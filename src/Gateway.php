@@ -2,6 +2,7 @@
 
 namespace Omnipay\DskBank;
 
+use Composer\CaBundle\CaBundle;
 use Http\Discovery\HttpClientDiscovery;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Http\Client;
@@ -103,8 +104,14 @@ class Gateway extends AbstractGateway
         $httpClient = HttpClientDiscovery::find();
 
         if ($httpClient instanceof \Http\Adapter\Guzzle6\Client) {
+            file_put_contents(
+                $tempCaBundleFile = tempnam(sys_get_temp_dir(), 'openssl-ca-bundle-'),
+                file_get_contents(CaBundle::getBundledCaBundlePath()) .
+                file_get_contents(__DIR__ . '/../resources/ca-bundle.pem')
+            );
+
             $httpClient = \Http\Adapter\Guzzle6\Client::createWithConfig([
-                'verify' => __DIR__ . '/../resources/ca-bundle.pem',
+                'verify' => $tempCaBundleFile,
             ]);
         }
 

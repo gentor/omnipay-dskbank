@@ -30,7 +30,8 @@
     },
     "require": {
         "omnipay/common": "^3",
-        "ext-json": "*"
+        "ext-json": "*",
+        "composer/ca-bundle": "^1.2"
     },
     "require-dev": {
         "omnipay/tests": "^3",
