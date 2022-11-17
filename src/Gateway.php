@@ -34,6 +34,7 @@ use Omnipay\DskBank\Message\VerifyEnrollmentRequest;
  * @author Evgeni Nurkov
  * @company CloudCart
  * @package Omnipay\DskBank
+ * @link https://uat.dskbank.bg/sandbox/integration/api/rest/rest.html
  * @link http://mcsign.dskbank.bg:7778/archive/ecom/EPG_Manual.zip
  *
  * @method NotificationInterface acceptNotification(array $options = array())
@@ -54,6 +55,7 @@ class Gateway extends AbstractGateway
      * @var string
      */
     public const TEST_URL = 'https://ecomtest.dskbank.bg/payment/';
+    public const TEST_URL_2022 = 'https://uat.dskbank.bg/payment/';
 
     /**
      * Production gateway url
@@ -61,6 +63,7 @@ class Gateway extends AbstractGateway
      * @var string
      */
     public const PRODUCTION_URL = 'https://ecommerce.dskbank.bg/payment/';
+    public const PRODUCTION_URL_2022 = 'https://epg.dskbank.bg/payment/';
 
     /**
      * Get gateway display name
@@ -86,6 +89,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters(): array
     {
         return [
+            'apiVersion' => 2022,
             'testMode' => true,
             'endpoint' => self::TEST_URL,
             'userName' => '',
@@ -118,15 +122,30 @@ class Gateway extends AbstractGateway
         return new Client($httpClient);
     }
 
+    public function setApiVersion($value): self
+    {
+        if ($value == 2022) {
+            $this->setEndpoint($this->getTestMode() ? self::TEST_URL_2022 : self::PRODUCTION_URL_2022);
+        } else {
+            $this->setEndpoint($this->getTestMode() ? self::TEST_URL : self::PRODUCTION_URL);
+        }
+
+        return $this->setParameter('apiVersion', $value);
+    }
+
     /**
      * Set gateway test mode. Also changes URL
      *
-     * @param bool $testMode
+     * @param bool $value
      * @return $this
      */
     public function setTestMode($testMode): self
     {
-        $this->setEndpoint($testMode ? self::TEST_URL : self::PRODUCTION_URL);
+        if ($this->getParameter('apiVersion') == 2022) {
+            $this->setEndpoint($testMode ? self::TEST_URL_2022 : self::PRODUCTION_URL_2022);
+        } else {
+            $this->setEndpoint($testMode ? self::TEST_URL : self::PRODUCTION_URL);
+        }
 
         return $this->setParameter('testMode', $testMode);
     }

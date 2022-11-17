@@ -25,7 +25,7 @@ abstract class AbstractCurlResponse extends AbstractResponse
      */
     public function isSuccessful(): bool
     {
-        return $this->data['errorCode'] === 0;
+        return empty($this->data['errorCode']);
     }
 
     /**

@@ -1,20 +1,12 @@
-Card_no             exp_date	CVV     Name
----------------------------------------------------
-4748364006477854    08/21	    987	    TEST ECOMV
-4748364006938186    08/21	    041	    TEST ECOM
-5168494895055780    08/21	    220	    TEST ECOMM
-5168494076209313    08/21	    434	    TEST ECOMMC
+Card_no             exp_date	CVV
+-----------------------------------
+4748364006477854    08/26       127
+4748364006938186    08/26       665
+5168494895055780    08/23       306
+5168494076209313    08/23       652
 
-For cards involeved into 3-D Secure (veres=y, pares=y or a) ACS password is 12345678.
+For 3DS tests:
+5168494148337357    01/24       261 SMS:12345 PIN:1234
 
-PAN                 CVC Expiration  Processing Response
-------------------------------------------------------------------------------
-4444444444446666    123 2019/12     Blocked by limit.
-4111111111111111    123 2019/12     Request has been processed successfully.
-4563960122001999    347 2019/12     Request has been processed successfully.
-5555555555555557    123 2019/12     Request has been processed successfully.
-5555555555555599    123 2019/12     Request has been processed successfully.
-639002000000000003  123 2019/12     Request has been processed successfully.
-4444444444444422    123 2019/12     Message format is incorrect.
-4444444411111111    123 2019/12     Refusal of network to process transaction.
-4444444499999999    123 2019/12     3DS connection error.
+User name           Password    Currency
+Test13-api          Test13      BGN(975)

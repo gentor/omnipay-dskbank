@@ -179,8 +179,7 @@ abstract class AbstractCurlRequest extends AbstractRequest
     public function getHeaders(): array
     {
         return [
-            'CMS' => 'Omnipay DskBank package',
-            'Module-Version' => '1.0.0',
+            'User-Agent' => 'Omnipay DskBank',
         ];
     }
 
