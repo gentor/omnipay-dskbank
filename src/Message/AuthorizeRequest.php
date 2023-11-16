@@ -236,6 +236,16 @@ class AuthorizeRequest extends AbstractCurlRequest
         return $this->setParameter('jsonParams', $value);
     }
 
+    public function getOrderBundle()
+    {
+        return $this->getParameter('orderBundle');
+    }
+
+    public function setOrderBundle(string $value): self
+    {
+        return $this->setParameter('orderBundle', $value);
+    }
+
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
      * gateway, but will usually be either an associative array, or a SimpleXMLElement.
@@ -256,7 +266,7 @@ class AuthorizeRequest extends AbstractCurlRequest
         $extraParameters = [
             'currency', 'description', 'language', 'pageView', 'sessionTimeoutSecs', 'features',
             'bindingId', 'expirationDate', 'failUrl', 'clientId', 'merchantLogin', 'taxSystem',
-            'jsonParams',
+            'jsonParams', 'orderBundle',
         ];
 
         foreach ($extraParameters as $parameter) {

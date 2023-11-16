@@ -180,6 +180,7 @@ abstract class AbstractCurlRequest extends AbstractRequest
     {
         return [
             'User-Agent' => 'Omnipay DskBank',
+            'Content-Type' => 'application/x-www-form-urlencoded',
         ];
     }
 
@@ -198,7 +199,7 @@ abstract class AbstractCurlRequest extends AbstractRequest
         ], $data);
         $data = http_build_query($data);
 
-        $httpResponse = $this->httpClient->request('POST', "{$url}?{$data}", $this->getHeaders());
+        $httpResponse = $this->httpClient->request('POST', $url, $this->getHeaders(), $data);
 
         $statusCode = $httpResponse->getStatusCode();
 
